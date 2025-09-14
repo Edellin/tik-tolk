@@ -1,5 +1,5 @@
 @import "fonts";
-@import 'margins';
+@import "margins";
 
 :root {
   --dark-color: #000000;
@@ -10,6 +10,7 @@
   --light-transparent-color: rgba(255, 255, 255, 0.75);
   --light-border: 1px solid var(--light-color);
   --dark-active-color: #161616;
+  --message-color: #404040;
 }
 
 *,
@@ -27,7 +28,7 @@ body {
   color: var(--light-color);
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url(/assets/imgs/background.png);
+  background-image: url(//assets/imgs/background.png);
 }
 
 .medium-text {

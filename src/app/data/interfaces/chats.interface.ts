@@ -4,7 +4,7 @@ export interface Chat {
   id: number
   userFirst: Profile
   userSecond: Profile
-  messages: []
+  messages: Message[]
   companion?: Profile
 }
 
@@ -12,15 +12,16 @@ export interface Message {
   id: number
   userFromId: number
   personalChatId: number
-  text: string,
+  text: string
   createAt: string
   idRead: boolean
   updateAt: string
   user?: Profile
+  isMine?: boolean
 }
 
 export interface LastMessageResponse {
   id: number
   userFrom: Profile
-  message: string
+  message: string | null
 }
