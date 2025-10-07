@@ -19,7 +19,7 @@ export class ChatWorkspaceMessagesWrapperComponent {
 
   chat = input.required<Chat>()
 
-  messages = this.chatsService.activeChatMessages
+  message = this.chatsService.activeChatMessages
 
   async onSendMessage(messageText: string) {
     await firstValueFrom(this.chatsService.sendMessage(this.chat().id, messageText))
@@ -27,4 +27,31 @@ export class ChatWorkspaceMessagesWrapperComponent {
     await firstValueFrom(this.chatsService.getChatById(this.chat().id))
 
   }
+
+  groupedMessages() {
+    const groups: { date: string; label: string; messages: any[] }[] = [];
+    const msgs = this.chatsService.activeChatMessages();
+
+    for (const msg of msgs) {
+      const d = new Date(msg.createAt);
+      const key = d.toDateString();
+      let group = groups.find(g => g.date === key);
+
+      if (!group) {
+        const now = new Date();
+        const diffDays = Math.floor((now.getTime() - d.getTime()) / (1000 * 60 * 60 * 24));
+
+        let label = '';
+        if (diffDays === 0) label = 'Сегодня';
+        else if (diffDays === 1) label = 'Вчера';
+        else label = `${diffDays} дн. назад`;
+
+        group = { date: key, label, messages: [] };
+        groups.push(group);
+      }
+      group.messages.push(msg);
+    }
+    return groups;
+  }
+
 }

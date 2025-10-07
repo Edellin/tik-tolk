@@ -1,6 +1,4 @@
-import { Component, inject } from '@angular/core';
-import {ProfileCardComponent} from './common-ui/profile-card/profile-card.component';
-import {JsonPipe} from '@angular/common';
+import { Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 
